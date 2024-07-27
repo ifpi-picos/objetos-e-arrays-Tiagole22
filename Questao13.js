@@ -1,26 +1,33 @@
-const readline = require('readline').cleateInterface({
+const readline = require('readline');
+
+// Configurar o readline para entrada de dados
+const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
 
-let filmes =[];
+const filmes = [];
+let contador = 0;
 
-readline.question('Digite o nome do 1° filme:', (filme1) => {
-    filmes.push(filme1);
-readline.question('Digite o nome do 2° filme:', (filme2) =>{
-    filmes.push(filme2);
-readline.question('Digite o nome do 3° filme:', (filme3)=>{
-    filmes.push(filme3);
-readline.question('Digite o nome do 4° filme:', (filme4)=>{
-readline.question('Digite o nome do 5° filme:', (filme5)=>{
-    filmes.push(filme5)
+function pedirFilme() {
+    if (contador < 5) {
+        rl.question(`Digite o nome do filme ${contador + 1}: `, (filme) => {
+            filmes.push(filme);
+            contador++;
+            pedirFilme();
+        });
+    } else {
+        rl.close();
+        exibirFilmes();
+    }
+}
 
-    console.log("Filmes informados1:")
-    console.log(filmes);
+function exibirFilmes() {
+    console.log("\nOs filmes informados são:");
+    filmes.forEach((filme, index) => {
+        console.log(`${index + 1}: ${filme}`);
+    });
+}
 
-    readline.close();
-});
-});
-});
-});
-});
+// Iniciar o processo
+pedirFilme();
