@@ -1,6 +1,5 @@
 const readline = require('readline');
 
-
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
@@ -24,9 +23,9 @@ function pedirFilme() {
 
 function exibirFilmes() {
     console.log("\nOs filmes informados são:");
-    filmes.forEach((filme, index) => {
-        console.log(`${index + 1}: ${filme}`);
-    });
+    for (let i = 0; i < filmes.length; i++) {
+        console.log(`${i + 1}: ${filmes[i]}`);
+    }
 }
 
 pedirFilme();
